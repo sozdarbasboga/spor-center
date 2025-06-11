@@ -1,0 +1,44 @@
+{
+  "name": "fitlife-fitness-website",
+  "version": "1.0.0",
+  "description": "Modern fitness center website with responsive design, BMI calculator, and interactive features",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000 --open=/index.html",
+    "dev": "live-server --port=3000 --open=/index.html --watch=.",
+    "build": "echo 'Building project...' && npm run minify-css && npm run minify-js",
+    "minify-css": "cleancss -o dist/styles.min.css styles.css",
+    "minify-js": "uglifyjs script.js -o dist/script.min.js",
+    "deploy": "npm run build && echo 'Ready for deployment'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "fitness",
+    "gym",
+    "health",
+    "responsive",
+    "website",
+    "bmi-calculator",
+    "javascript",
+    "html",
+    "css"
+  ],
+  "author": "FitLife Development Team",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "clean-css-cli": "^5.6.2",
+    "uglify-js": "^3.17.4"
+  },
+  "dependencies": {
+    "font-awesome": "^4.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fitlife/fitness-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fitlife/fitness-website/issues"
+  },
+  "homepage": "https://fitlife-fitness.netlify.app"
+}

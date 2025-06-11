@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POWERFULL - Fitness & Training Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="Resimler/logo.png" alt="POWERFULL Logo"
+                        style="width: 240px; height: 140px; object-fit: contain;"
+                    >
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#classes">Classes</a></li>
+                    <li><a href="#trainers">Trainer</a></li>
+                    <li><a href="#review">Review</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#pricing" class="btn btn-join">JOIN US</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">POWERFULL</div>
+                <h1>Group<br>Practice<br>With Trainer</h1>
+                <p>Join our dynamic group sessions led by expert trainers to boost your strength and motivation. Experience effective workouts designed to help you achieve your fitness goals in a supportive environment.</p>
+
+                <div class="hero-buttons">
+                    <a href="#classes" class="btn btn-primary">Sign Up</a>
+                    <a href="#about" class="btn btn-outline">Details</a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">325</div>
+                    <div class="stat-label">Course</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">405</div>
+                    <div class="stat-label">Work Out</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">305</div>
+                    <div class="stat-label">Working Hour</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">705</div>
+                    <div class="stat-label">Happy Client</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Classes Section -->
+    <section id="classes" class="classes">
+        <div class="container">
+            <div class="section-header">
+                <h2>OUR CLASSES</h2>
+                <div class="orange-divider"></div>
+                <p>Lorem ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
+            </div>
+            <div class="classes-filter">
+                <button class="filter-btn" data-filter="yoga">Yoga</button>
+                <button class="filter-btn" data-filter="group">Group</button>
+                <button class="filter-btn" data-filter="solo">Solo</button>
+                <button class="filter-btn" data-filter="stretching">Stretching</button>
+            </div>
+
+            <!-- Class Content Areas -->
+            <div class="class-content-area">
+                <!-- Yoga Content -->
+                <div class="class-detail active" data-category="yoga">
+                    <div class="class-detail-content">
+                        <div class="class-text">
+                            <h3>Why are your Yoga?</h3>
+                            <p>I practice yoga to stay fit and healthy. It helps me reduce stress and feel more relaxed. Over time, my balance and flexibility have improved. Yoga also helps me stay focused and calm throughout the day.</p>
+
+
+                            <h4>When comes Yoga Your Time.</h4>
+                            <div class="class-schedule">
+                                <p><strong>Saturday-Sunday:</strong> 8:00am - 10:00am</p>
+                                <p><strong>Monday-Tuesday:</strong> 10:00am - 12:00pm</p>
+                                <p><strong>Wednesday-Friday:</strong> 3:00pm - 6:00pm</p>
+                            </div>
+                        </div>
+                        <div class="class-image">
+                            <img src="Resimler/yoga.jpg" alt="Yoga Class">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group Content -->
+                <div class="class-detail" data-category="group">
+                    <div class="class-detail-content">
+                        <div class="class-text">
+                            <h3>Why choose Group Training?</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur possimus voluptatum impedit odit perferendis dolorum placeat, exercitationem in officia autem maiores ab nostrum laboriosam sapiente nulla totam neque eum veniam.</p>
+
+                            <h4>Group Training Schedule.</h4>
+                            <div class="class-schedule">
+                                <p><strong>Monday-Wednesday:</strong> 6:00am - 8:00am</p>
+                                <p><strong>Tuesday-Thursday:</strong> 7:00pm - 9:00pm</p>
+                                <p><strong>Saturday-Sunday:</strong> 10:00am - 12:00pm</p>
+                            </div>
+                        </div>
+                        <div class="class-image">
+                            <img src="Resimler/group.webp" alt="Group Training">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solo Content -->
+                <div class="class-detail" data-category="solo">
+                    <div class="class-detail-content">
+                        <div class="class-text">
+                            <h3>Why choose Solo Training?</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur possimus voluptatum impedit odit perferendis dolorum placeat, exercitationem in officia autem maiores ab nostrum laboriosam sapiente nulla totam neque eum veniam.</p>
+
+                            <h4>Solo Training Schedule.</h4>
+                            <div class="class-schedule">
+                                <p><strong>Monday-Friday:</strong> 9:00am - 11:00am</p>
+                                <p><strong>Tuesday-Thursday:</strong> 2:00pm - 4:00pm</p>
+                                <p><strong>Saturday-Sunday:</strong> 4:00pm - 6:00pm</p>
+                            </div>
+                        </div>
+                        <div class="class-image">
+                            <img src="Resimler/solo.jpg" alt="Solo Training">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stretching Content -->
+                <div class="class-detail" data-category="stretching">
+                    <div class="class-detail-content">
+                        <div class="class-text">
+                            <h3>Why choose Stretching?</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur possimus voluptatum impedit odit perferendis dolorum placeat, exercitationem in officia autem maiores ab nostrum laboriosam sapiente nulla totam neque eum veniam.</p>
+
+                            <h4>Stretching Schedule.</h4>
+                            <div class="class-schedule">
+                                <p><strong>Monday-Wednesday:</strong> 7:00am - 8:00am</p>
+                                <p><strong>Tuesday-Thursday:</strong> 6:00pm - 7:00pm</p>
+                                <p><strong>Friday-Sunday:</strong> 5:00pm - 6:00pm</p>
+                            </div>
+                        </div>
+                        <div class="class-image">
+                            <img src="Resimler/stret.webp" alt="Stretching">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BMI Calculator Section -->
+    <section class="bmi-calculator">
+        <div class="container">
+            <div class="bmi-content">
+                <div class="bmi-left">
+                    <h2>BMI Calculator</h2>
+                    <div class="orange-divider"></div>
+                    <p>The BMI (Body Mass Index) Calculator helps users determine whether their weight is healthy based on their height and weight. </p>
+                    <p>It provides instant results and categorizes the BMI as underweight, normal, overweight, or obese. This tool promotes awareness of personal fitness and encourages healthier lifestyle choices.</p>
+
+                    <div class="bmi-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="number" placeholder="Your Height" id="height">
+                                <span class="unit">cm</span>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" placeholder="Your Weight" id="weight">
+                                <span class="unit">kg</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="calculateBMI()">Calculate BMI</button>
+                    </div>
+                </div>
+                <div class="bmi-right">
+                    <div class="bmi-result" id="bmiResult"></div>
+                    <div class="bmi-chart">
+                        <img src="Resimler/bmi-index.jpg" alt="BMI Index Chart">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Best Trainers Section -->
+    <section id="trainers" class="trainers">
+        <div class="container">
+            <div class="section-header">
+                <h2>OUR BEST TRAINERS</h2>
+                <div class="orange-divider"></div>
+                <p>Our best trainers are certified professionals with years of experience. They are dedicated to helping you reach your fitness goals safely and effectively.</p>
+            </div>
+            <div class="trainers-grid">
+                <div class="trainer-card">
+                    <div class="trainer-image">
+                        <img src="Resimler/trainer1.jpg" alt="Jane Doe">
+                        <div class="trainer-frame"></div>
+                    </div>
+                    <div class="trainer-overlay">
+                        <div class="trainer-info">
+                            <h3>Jane Doe</h3>
+                            <p>Cardio Trainer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-image">
+                        <img src="Resimler/trainer2.jpg" alt="Mike Johnson">
+                        <div class="trainer-frame"></div>
+                    </div>
+                    <div class="trainer-overlay">
+                        <div class="trainer-info">
+                            <h3>Mike Johnson</h3>
+                            <p>Strength Coach</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-image">
+                        <img src="Resimler/trainer3.jpg" alt="Sarah Wilson">
+                        <div class="trainer-frame"></div>
+                    </div>
+                    <div class="trainer-overlay">
+                        <div class="trainer-info">
+                            <h3>Sarah Wilson</h3>
+                            <p>Yoga Instructor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div style="height: 100px;"></div>
+
+    <!-- Purchase From Us Section -->
+    <section class="purchase">
+        <div class="container">
+            <div class="section-header">
+                <h2>PURCHASE FROM US</h2>
+                <div class="orange-divider"></div>
+                <p>Shop with confidence and get high-quality products tailored to your fitness needs. We offer easy ordering, secure payment, and fast delivery to help you stay on track with your goals.</p>
+
+
+            </div>
+            <div class="purchase-grid">
+                <div class="purchase-card">
+                    <img src="Resimler/purchase1.jpg" alt="Kettlebell 5kg - Premium fitness equipment for strength training">
+                    <div class="purchase-content">
+                        <h3>Kettlebell / 5kg</h3>
+                        <div class="purchase-price">
+                            <span class="current-price">89,99$ / 59,99$</span>
+                        </div>
+                        <button class="purchase-btn" disabled>
+                            <i class="fas fa-shopping-cart"></i>
+                            Add To Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="purchase-card">
+                    <img src="Resimler/purchase2.jpg" alt="Treadmill - Professional cardio equipment for home gym">
+                    <div class="purchase-content">
+                        <h3>Treadmill</h3>
+                        <div class="purchase-price">
+                            <span class="current-price">899,99$ / 599,99$</span>
+                        </div>
+                        <button class="purchase-btn" disabled>
+                            <i class="fas fa-shopping-cart"></i>
+                            Add To Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="purchase-card">
+                    <img src="Resimler/purchase3.jpg" alt="Adjustable Dumbbell - Versatile weight training equipment">
+                    <div class="purchase-content">
+                        <h3>Adjustable Dumbbell</h3>
+                        <div class="purchase-price">
+                            <span class="current-price">89,99$ / 59,99$</span>
+                        </div>
+                        <button class="purchase-btn" disabled>
+                            <i class="fas fa-shopping-cart"></i>
+                            Add To Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="purchase-card">
+                    <img src="Resimler/purchase4.jpg" alt="Kettlebell 3kg - Lightweight fitness equipment for beginners">
+                    <div class="purchase-content">
+                        <h3>Kettlebell / 3kg</h3>
+                        <div class="purchase-price">
+                            <span class="current-price">89,99$ / 59,99$</span>
+                        </div>
+                        <button class="purchase-btn" disabled>
+                            <i class="fas fa-shopping-cart"></i>
+                            Add To Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Review Client Section -->
+    <section id="review" class="review">
+        <div class="container">
+            <div class="section-header">
+                <h2>REVIEW CLIENT</h2>
+                <div class="orange-divider"></div>
+                <p>Our client reviews showcase honest feedback and experiences from people who have used our services. They help new customers trust us and understand the quality of our fitness programs.</p>
+
+            </div>
+            <div class="review-grid">
+                <div class="review-card">
+                    <div class="review-author">
+                        <img src="Resimler/client1.jpg" alt="Diet Expert">
+                        <div class="author-info">
+                            <h4>Diet Expert</h4>
+                            <span>CFO</span>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Great facility and knowledgeable trainers. The personalized workout plans helped me achieve my fitness goals faster than I expected.</p>
+
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-author">
+                        <img src="Resimler/client2.jpg" alt="Cardio Trainer">
+                        <div class="author-info">
+                            <h4>Cardio Trainer</h4>
+                            <span>CEO</span>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>I have seen amazing results since I started training here. The trainers are supportive and really motivate me to push my limits. Highly recommended!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>CONTACT US</h2>
+                <div class="section-divider"></div>
+                <p>If you have any questions or need assistance, feel free to contact us. Our team is here to support you with all your fitness-related needs and inquiries.
+                <br>Hampden-Sydney College.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-left">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h3>Mobile Number</h3>
+                            <p>+135 773 321 4442</p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>Email Address</h3>
+                            <p>demo@demo.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Make An Appointment</h3>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="map-container">
+                        <div id="map">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968459391!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                                width="100%"
+                                height="500"
+                                style="border:0;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <img src="Resimler/logo.png" alt="POWERFULL Logo">
+                </div>
+                <p class="footer-description">Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisquam voluptatum, quod, quae, voluptate, voluptas quia quibusdam voluptatibus quos doloribus quidem fugiat. Quisquam voluptatum, quod, quae, voluptate, voluptas quia quibusdam voluptatibus quos doloribus quidem fugiat.</p>
+            </div>
+            <div class="footer-content">
+                <div class="footer-section footer-left">
+                    <h3>Information</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#classes">Classes</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-right">
+                    <h3>Helpful Links</h3>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#supports">Supports</a></li>
+                        <li><a href="#terms">Terms & Condition</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
