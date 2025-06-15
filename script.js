@@ -70,37 +70,172 @@ function initBMICalculator() {
             // Determine BMI category
             let category = '';
             let categoryClass = '';
+            let categoryDescription = '';
 
             if (bmi < 18.5) {
                 category = 'Underweight';
                 categoryClass = 'underweight';
+                categoryDescription = 'You may need to gain weight';
             } else if (bmi >= 18.5 && bmi < 25) {
-                category = 'Normal';
+                category = 'Normal Weight';
                 categoryClass = 'normal';
+                categoryDescription = 'You have a healthy weight';
             } else if (bmi >= 25 && bmi < 30) {
                 category = 'Overweight';
                 categoryClass = 'overweight';
+                categoryDescription = 'You may need to lose weight';
             } else {
                 category = 'Obese';
                 categoryClass = 'obese';
+                categoryDescription = 'Consider consulting a healthcare provider';
             }
 
-            // Display result
-            bmiResult.innerHTML = `
-                <h4>Your BMI Result</h4>
-                <div class="bmi-value">${bmiRounded}</div>
-                <div class="bmi-category ${categoryClass}">${category}</div>
-                <p>Height: ${height} cm | Weight: ${weight} kg</p>
-            `;
+            // Calculate progress percentage for visual representation (0-40 BMI range)
+            const progressPercentage = Math.min((bmi / 40) * 100, 100);
 
-            bmiResult.classList.add('show');
+            // Display animated result
+            displayAnimatedBMIResult(bmiResult, bmiRounded, category, categoryClass, categoryDescription, height, weight, progressPercentage);
 
-            // Scroll to result
-            bmiResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Scroll to result with delay to allow animation
+            setTimeout(() => {
+                bmiResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
         } else {
-            alert('Please enter valid height and weight values.');
+            // Show inline error message instead of alert
+            showBMIError(bmiResult, 'Please enter valid height and weight values.');
         }
     };
+
+    // Function to display animated BMI result
+    function displayAnimatedBMIResult(resultElement, bmiValue, category, categoryClass, description, height, weight, progressPercentage) {
+        // Create the result HTML structure
+        resultElement.innerHTML = `
+            <div class="bmi-result-header">
+                <h4>Your BMI Result</h4>
+                <div class="bmi-loading-spinner"></div>
+            </div>
+            <div class="bmi-visual-container">
+                <div class="bmi-circular-progress">
+                    <svg class="progress-ring" width="120" height="120">
+                        <circle class="progress-ring-background" cx="60" cy="60" r="50"></circle>
+                        <circle class="progress-ring-progress ${categoryClass}" cx="60" cy="60" r="50" style="--progress: ${progressPercentage}"></circle>
+                    </svg>
+                    <div class="bmi-value-container">
+                        <div class="bmi-value" data-target="${bmiValue}">0.0</div>
+                        <div class="bmi-unit">BMI</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bmi-category-container">
+                <div class="bmi-category ${categoryClass}">${category}</div>
+                <div class="bmi-description">${description}</div>
+            </div>
+            <div class="bmi-details">
+                <div class="bmi-detail-item">
+                    <span class="detail-label">Height:</span>
+                    <span class="detail-value">${height} cm</span>
+                </div>
+                <div class="bmi-detail-item">
+                    <span class="detail-label">Weight:</span>
+                    <span class="detail-value">${weight} kg</span>
+                </div>
+            </div>
+            <div class="bmi-ranges">
+                <div class="range-item">
+                    <div class="range-color underweight"></div>
+                    <span>Underweight (&lt;18.5)</span>
+                </div>
+                <div class="range-item">
+                    <div class="range-color normal"></div>
+                    <span>Normal (18.5-24.9)</span>
+                </div>
+                <div class="range-item">
+                    <div class="range-color overweight"></div>
+                    <span>Overweight (25-29.9)</span>
+                </div>
+                <div class="range-item">
+                    <div class="range-color obese"></div>
+                    <span>Obese (≥30)</span>
+                </div>
+            </div>
+        `;
+
+        // Show result with slide-in animation
+        resultElement.classList.remove('show');
+        resultElement.classList.add('show', 'animating');
+
+        // Start animations after a short delay
+        setTimeout(() => {
+            // Hide loading spinner
+            const spinner = resultElement.querySelector('.bmi-loading-spinner');
+            if (spinner) spinner.style.display = 'none';
+
+            // Animate BMI value counting
+            animateValue(resultElement.querySelector('.bmi-value'), 0, bmiValue, 1500);
+
+            // Animate category appearance
+            setTimeout(() => {
+                resultElement.querySelector('.bmi-category-container').classList.add('show');
+            }, 800);
+
+            // Animate details appearance
+            setTimeout(() => {
+                resultElement.querySelector('.bmi-details').classList.add('show');
+            }, 1200);
+
+            // Animate ranges appearance
+            setTimeout(() => {
+                resultElement.querySelector('.bmi-ranges').classList.add('show');
+            }, 1600);
+
+            // Remove animating class
+            setTimeout(() => {
+                resultElement.classList.remove('animating');
+            }, 2000);
+        }, 500);
+    }
+
+    // Function to show error message
+    function showBMIError(resultElement, message) {
+        resultElement.innerHTML = `
+            <div class="bmi-error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>${message}</p>
+            </div>
+        `;
+        resultElement.classList.add('show', 'error');
+
+        // Remove error after 3 seconds
+        setTimeout(() => {
+            resultElement.classList.remove('show', 'error');
+        }, 3000);
+    }
+
+    // Function to animate number counting
+    function animateValue(element, start, end, duration) {
+        if (!element) return;
+
+        const startTime = performance.now();
+        const startValue = start;
+        const endValue = end;
+
+        function updateValue(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Easing function for smooth animation
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const currentValue = startValue + (endValue - startValue) * easeOutQuart;
+
+            element.textContent = currentValue.toFixed(1);
+
+            if (progress < 1) {
+                requestAnimationFrame(updateValue);
+            }
+        }
+
+        requestAnimationFrame(updateValue);
+    }
 }
 
 // Contact form functionality
