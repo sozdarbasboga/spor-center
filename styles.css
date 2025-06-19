@@ -3056,6 +3056,8 @@ html {
         max-width: 340px !important;
         min-width: 0 !important;
         margin: 0 auto;
+        cursor: pointer !important;
+        position: relative;
     }
 }
 
@@ -3073,17 +3075,39 @@ html {
         display: none !important;
         content: none !important;
     }
+
+    /* Hover efektlerini mobilde devre dışı bırak */
+    .trainer-card:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    .trainer-card:hover .trainer-image img {
+        transform: none !important;
+    }
+
+    .trainer-card:hover .trainer-overlay {
+        transform: translateY(100%) !important;
+    }
+
     /* Overlay sadece tıklanınca gelsin */
     .trainer-overlay {
         transform: translateY(100%) !important;
         pointer-events: none;
         opacity: 0;
-        transition: transform 0.3s, opacity 0.3s;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        background: rgba(53, 85, 146, 0.95) !important;
     }
+
     .trainer-card.show-overlay .trainer-overlay {
         transform: translateY(0) !important;
         pointer-events: auto;
         opacity: 1;
+    }
+
+    /* Tıklama efekti için hafif gölge */
+    .trainer-card.show-overlay {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
     }
 }
 

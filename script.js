@@ -10,29 +10,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mobilde trainer kart overlay tıklama ile aç/kapat
     function initTrainerOverlayMobile() {
-        if (window.innerWidth > 576) return;
         const trainerCards = document.querySelectorAll('.trainer-card');
-        trainerCards.forEach(card => {
-            card.addEventListener('click', function(e) {
-                // Sadece kartın kendisine veya resmine tıklanınca çalışsın
-                if (!e.target.classList.contains('trainer-card') && !e.target.classList.contains('trainer-image') && !e.target.closest('.trainer-image')) return;
-                // Toggle mantığı
-                if (card.classList.contains('show-overlay')) {
-                    card.classList.remove('show-overlay');
-                } else {
-                    trainerCards.forEach(c => c.classList.remove('show-overlay'));
-                    card.classList.add('show-overlay');
-                }
+
+        function handleTrainerClick() {
+            // Sadece mobilde çalışsın
+            if (window.innerWidth > 576) return;
+
+            trainerCards.forEach(card => {
+                // Önceki event listener'ları temizle
+                card.removeEventListener('click', card.trainerClickHandler);
+
+                // Yeni event listener ekle
+                card.trainerClickHandler = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Toggle mantığı
+                    if (card.classList.contains('show-overlay')) {
+                        card.classList.remove('show-overlay');
+                    } else {
+                        // Diğer kartların overlay'lerini kapat
+                        trainerCards.forEach(c => c.classList.remove('show-overlay'));
+                        // Bu kartın overlay'ini aç
+                        card.classList.add('show-overlay');
+                    }
+                };
+
+                card.addEventListener('click', card.trainerClickHandler);
             });
+        }
+
+        // İlk yükleme
+        handleTrainerClick();
+
+        // Ekran boyutu değiştiğinde
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 576) {
+                // Desktop'ta overlay'leri kapat ve event listener'ları kaldır
+                document.querySelectorAll('.trainer-card.show-overlay').forEach(c => c.classList.remove('show-overlay'));
+                trainerCards.forEach(card => {
+                    if (card.trainerClickHandler) {
+                        card.removeEventListener('click', card.trainerClickHandler);
+                    }
+                });
+            } else {
+                // Mobile'da event listener'ları yeniden ekle
+                handleTrainerClick();
+            }
         });
     }
     initTrainerOverlayMobile();
-    window.addEventListener('resize', function() {
-        // Ekran büyürse overlay classlarını kaldır
-        if (window.innerWidth > 576) {
-            document.querySelectorAll('.trainer-card.show-overlay').forEach(c => c.classList.remove('show-overlay'));
-        }
-    });
 });
 
 // Navigation functionality
