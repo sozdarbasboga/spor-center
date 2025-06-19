@@ -1,6 +1,6 @@
 # POWERFULL - Fitness & Spor Merkezi Web Sitesi
 
-**CANLI DEMO**: [https://6849e3abf9a5c3e0394630cc--spor-center.netlify.app](https://6849e3abf9a5c3e0394630cc--spor-center.netlify.app)
+**CANLI DEMO**: [https://spor-center-sozdar.netlify.app/](https://spor-center-sozdar.netlify.app)
 
 
 POWERFULL, modern web teknolojileri kullanılarak tasarlanmış responsive bir fitness merkezi web sitesidir. Bu proje, interaktif özellikler, mobil-öncelikli tasarım ve optimize edilmiş performans ile profesyonel web geliştirme becerilerini sergiler.
