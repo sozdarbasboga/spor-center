@@ -8,6 +8,31 @@ document.addEventListener('DOMContentLoaded', function() {
     initLoadingAnimations();
     initClassesFilter();
 
+    // Mobilde trainer kart overlay tıklama ile aç/kapat
+    function initTrainerOverlayMobile() {
+        if (window.innerWidth > 576) return;
+        const trainerCards = document.querySelectorAll('.trainer-card');
+        trainerCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Sadece kartın kendisine veya resmine tıklanınca çalışsın
+                if (!e.target.classList.contains('trainer-card') && !e.target.classList.contains('trainer-image') && !e.target.closest('.trainer-image')) return;
+                // Toggle mantığı
+                if (card.classList.contains('show-overlay')) {
+                    card.classList.remove('show-overlay');
+                } else {
+                    trainerCards.forEach(c => c.classList.remove('show-overlay'));
+                    card.classList.add('show-overlay');
+                }
+            });
+        });
+    }
+    initTrainerOverlayMobile();
+    window.addEventListener('resize', function() {
+        // Ekran büyürse overlay classlarını kaldır
+        if (window.innerWidth > 576) {
+            document.querySelectorAll('.trainer-card.show-overlay').forEach(c => c.classList.remove('show-overlay'));
+        }
+    });
 });
 
 // Navigation functionality
@@ -16,14 +41,47 @@ function initNavigation() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-menu a');
+    const navClose = document.querySelector('.nav-close');
 
-    // Navbar scroll effect removed - header is now static
+    // Navbar scroll effect - transparent at top, solid when scrolled
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop <= 0) {
+            // At the very top (home section) - transparent background
+            navbar.style.background = 'transparent';
+            navbar.style.backdropFilter = 'none';
+            navbar.style.boxShadow = 'none';
+        } else {
+            // When scrolled - solid background
+            navbar.style.background = '#355592';
+            navbar.style.backdropFilter = 'none';
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
+        }
+    });
+
+    // Set initial background color (transparent at start)
+    navbar.style.background = 'transparent';
 
     // Mobile menu toggle - Değerlendirme formu 8
     navToggle.addEventListener('click', function() {
         navToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
         document.body.classList.toggle('menu-open');
+        if (window.innerWidth <= 576) {
+            if (navMenu.classList.contains('active')) {
+                navClose.style.display = 'flex';
+            } else {
+                navClose.style.display = 'none';
+            }
+        }
+    });
+
+    navClose.addEventListener('click', function() {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        navClose.style.display = 'none';
     });
 
     // Close mobile menu when clicking on links - Değerlendirme formu 8
@@ -32,6 +90,7 @@ function initNavigation() {
             navToggle.classList.remove('active');
             navMenu.classList.remove('active');
             document.body.classList.remove('menu-open');
+            navClose.style.display = 'none';
         });
     });
 
@@ -55,186 +114,86 @@ function initNavigation() {
 
 // BMI Calculator functionality
 function initBMICalculator() {
-    // Add global function for button onclick
-    window.calculateBMI = function() {
-        const height = parseFloat(document.getElementById('height').value);
-        const weight = parseFloat(document.getElementById('weight').value);
-        const bmiResult = document.getElementById('bmiResult');
+    const heightInput = document.getElementById('height');
+    const weightInput = document.getElementById('weight');
+    const bmiResultSimple = document.getElementById('bmiResultSimple');
+
+    // Başlangıçta gizle
+    bmiResultSimple.style.display = 'none';
+
+    function animateBMIResult(html) {
+        bmiResultSimple.classList.remove('hide');
+        bmiResultSimple.style.opacity = 0;
+        bmiResultSimple.innerHTML = html;
+        bmiResultSimple.classList.add('show');
+        bmiResultSimple.style.display = 'flex';
+        setTimeout(() => {
+            bmiResultSimple.style.transition = 'opacity 0.4s';
+            bmiResultSimple.style.opacity = 1;
+        }, 50);
+    }
+
+    function hideBMIResult() {
+        bmiResultSimple.classList.remove('show');
+        bmiResultSimple.classList.add('hide');
+        bmiResultSimple.style.opacity = 0;
+        // Animasyon bitince display:none yap
+        bmiResultSimple.addEventListener('animationend', function handler(e) {
+            if (e.animationName === 'fadeOut') {
+                bmiResultSimple.style.display = 'none';
+                bmiResultSimple.classList.remove('hide');
+                bmiResultSimple.removeEventListener('animationend', handler);
+            }
+        });
+    }
+
+    function calculateBMI() {
+        const height = parseFloat(heightInput.value);
+        const weight = parseFloat(weightInput.value);
 
         if (height && weight && height > 0 && weight > 0) {
-            // BMI calculation: BMI = kg/m²
             const heightInMeters = height / 100;
             const bmi = weight / (heightInMeters * heightInMeters);
             const bmiRounded = Math.round(bmi * 10) / 10;
 
-            // Determine BMI category
             let category = '';
             let categoryClass = '';
-            let categoryDescription = '';
 
             if (bmi < 18.5) {
                 category = 'Underweight';
                 categoryClass = 'underweight';
-                categoryDescription = 'You may need to gain weight';
             } else if (bmi >= 18.5 && bmi < 25) {
-                category = 'Normal Weight';
+                category = 'Normal';
                 categoryClass = 'normal';
-                categoryDescription = 'You have a healthy weight';
             } else if (bmi >= 25 && bmi < 30) {
                 category = 'Overweight';
                 categoryClass = 'overweight';
-                categoryDescription = 'You may need to lose weight';
-            } else {
+            } else if (bmi >= 30 && bmi < 35) {
                 category = 'Obese';
                 categoryClass = 'obese';
-                categoryDescription = 'Consider consulting a healthcare provider';
+            } else {
+                category = 'Extremely Obese';
+                categoryClass = 'extremely-obese';
             }
 
-            // Calculate progress percentage for visual representation (0-40 BMI range)
-            const progressPercentage = Math.min((bmi / 40) * 100, 100);
-
-            // Display animated result
-            displayAnimatedBMIResult(bmiResult, bmiRounded, category, categoryClass, categoryDescription, height, weight, progressPercentage);
-
-            // Scroll to result with delay to allow animation
-            setTimeout(() => {
-                bmiResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 300);
+            const html = `
+                <div class=\"bmi-value-simple\">${bmiRounded}</div>
+                <div class=\"bmi-category-simple ${categoryClass}\">${category}
+                    <div class=\"bmi-details\">${height}cm | ${weight}kg</div>
+                </div>
+            `;
+            animateBMIResult(html);
         } else {
-            // Show inline error message instead of alert
-            showBMIError(bmiResult, 'Please enter valid height and weight values.');
+            // Geçersizse animasyonlu olarak gizle
+            hideBMIResult();
+            bmiResultSimple.innerHTML = '';
         }
-    };
-
-    // Function to display animated BMI result
-    function displayAnimatedBMIResult(resultElement, bmiValue, category, categoryClass, description, height, weight, progressPercentage) {
-        // Create the result HTML structure
-        resultElement.innerHTML = `
-            <div class="bmi-result-header">
-                <h4>Your BMI Result</h4>
-                <div class="bmi-loading-spinner"></div>
-            </div>
-            <div class="bmi-visual-container">
-                <div class="bmi-circular-progress">
-                    <svg class="progress-ring" width="120" height="120">
-                        <circle class="progress-ring-background" cx="60" cy="60" r="50"></circle>
-                        <circle class="progress-ring-progress ${categoryClass}" cx="60" cy="60" r="50" style="--progress: ${progressPercentage}"></circle>
-                    </svg>
-                    <div class="bmi-value-container">
-                        <div class="bmi-value" data-target="${bmiValue}">0.0</div>
-                        <div class="bmi-unit">BMI</div>
-                    </div>
-                </div>
-            </div>
-            <div class="bmi-category-container">
-                <div class="bmi-category ${categoryClass}">${category}</div>
-                <div class="bmi-description">${description}</div>
-            </div>
-            <div class="bmi-details">
-                <div class="bmi-detail-item">
-                    <span class="detail-label">Height:</span>
-                    <span class="detail-value">${height} cm</span>
-                </div>
-                <div class="bmi-detail-item">
-                    <span class="detail-label">Weight:</span>
-                    <span class="detail-value">${weight} kg</span>
-                </div>
-            </div>
-            <div class="bmi-ranges">
-                <div class="range-item">
-                    <div class="range-color underweight"></div>
-                    <span>Underweight (&lt;18.5)</span>
-                </div>
-                <div class="range-item">
-                    <div class="range-color normal"></div>
-                    <span>Normal (18.5-24.9)</span>
-                </div>
-                <div class="range-item">
-                    <div class="range-color overweight"></div>
-                    <span>Overweight (25-29.9)</span>
-                </div>
-                <div class="range-item">
-                    <div class="range-color obese"></div>
-                    <span>Obese (≥30)</span>
-                </div>
-            </div>
-        `;
-
-        // Show result with slide-in animation
-        resultElement.classList.remove('show');
-        resultElement.classList.add('show', 'animating');
-
-        // Start animations after a short delay
-        setTimeout(() => {
-            // Hide loading spinner
-            const spinner = resultElement.querySelector('.bmi-loading-spinner');
-            if (spinner) spinner.style.display = 'none';
-
-            // Animate BMI value counting
-            animateValue(resultElement.querySelector('.bmi-value'), 0, bmiValue, 1500);
-
-            // Animate category appearance
-            setTimeout(() => {
-                resultElement.querySelector('.bmi-category-container').classList.add('show');
-            }, 800);
-
-            // Animate details appearance
-            setTimeout(() => {
-                resultElement.querySelector('.bmi-details').classList.add('show');
-            }, 1200);
-
-            // Animate ranges appearance
-            setTimeout(() => {
-                resultElement.querySelector('.bmi-ranges').classList.add('show');
-            }, 1600);
-
-            // Remove animating class
-            setTimeout(() => {
-                resultElement.classList.remove('animating');
-            }, 2000);
-        }, 500);
     }
 
-    // Function to show error message
-    function showBMIError(resultElement, message) {
-        resultElement.innerHTML = `
-            <div class="bmi-error">
-                <i class="fas fa-exclamation-triangle"></i>
-                <p>${message}</p>
-            </div>
-        `;
-        resultElement.classList.add('show', 'error');
-
-        // Remove error after 3 seconds
-        setTimeout(() => {
-            resultElement.classList.remove('show', 'error');
-        }, 3000);
-    }
-
-    // Function to animate number counting
-    function animateValue(element, start, end, duration) {
-        if (!element) return;
-
-        const startTime = performance.now();
-        const startValue = start;
-        const endValue = end;
-
-        function updateValue(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-
-            // Easing function for smooth animation
-            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-            const currentValue = startValue + (endValue - startValue) * easeOutQuart;
-
-            element.textContent = currentValue.toFixed(1);
-
-            if (progress < 1) {
-                requestAnimationFrame(updateValue);
-            }
-        }
-
-        requestAnimationFrame(updateValue);
+    // Add input event listeners
+    if (heightInput && weightInput) {
+        heightInput.addEventListener('input', calculateBMI);
+        weightInput.addEventListener('input', calculateBMI);
     }
 }
 
@@ -319,8 +278,6 @@ function initClassesFilter() {
         });
     });
 }
-
-
 
 // Scroll effects and animations
 function initScrollEffects() {

@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+
     <!-- Header -->
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
                     <img src="Resimler/logo.png" alt="POWERFULL Logo"
-                        style="width: 240px; height: 140px; object-fit: contain;"
-                    >
+                        style="width: 240px; height: 140px; object-fit: contain;">
                 </div>
                 <ul class="nav-menu">
                     <li><a href="#home">Home</a></li>
@@ -24,13 +24,21 @@
                     <li><a href="#trainers">Trainer</a></li>
                     <li><a href="#review">Review</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="#pricing" class="btn btn-join">JOIN US</a></li>
+                    <li>
+                        <div class="join-us-btn">
+                            <a href="#pricing" class="btn btn-join">JOIN US</a>
+                        </div>
+                    </li>
                 </ul>
+               
                 <div class="nav-toggle">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
+                <button class="nav-close" aria-label="Close Menu" style="display:none;">
+                    <span style="font-size:2rem;line-height:1;color:#fff;">&times;</span>
+                </button>
             </div>
         </nav>
     </header>
@@ -42,8 +50,7 @@
             <div class="hero-content">
                 <div class="hero-badge">POWERFULL</div>
                 <h1>Group<br>Practice<br>With Trainer</h1>
-                <p>Join our dynamic group sessions led by expert trainers to boost your strength and motivation. Experience effective workouts designed to help you achieve your fitness goals in a supportive environment.</p>
-
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus odit qut iste. Velit porro rerum, unde modi ipsam exercitationem laudantium illum. Id, laborum? Totam, dicta nisi. Voluptates, vero id. Perferendis.</p>
                 <div class="hero-buttons">
                     <a href="#classes" class="btn btn-primary">Sign Up</a>
                     <a href="#about" class="btn btn-outline">Details</a>
@@ -99,8 +106,7 @@
                     <div class="class-detail-content">
                         <div class="class-text">
                             <h3>Why are your Yoga?</h3>
-                            <p>I practice yoga to stay fit and healthy. It helps me reduce stress and feel more relaxed. Over time, my balance and flexibility have improved. Yoga also helps me stay focused and calm throughout the day.</p>
-
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur possimus voluptatum impedit odit perferendis dolorum placeat, exercitationem in officia autem maiores ab nostrum laboriosam sapiente nulla totam neque eum veniam.</p>
 
                             <h4>When comes Yoga Your Time.</h4>
                             <div class="class-schedule">
@@ -185,8 +191,8 @@
                 <div class="bmi-left">
                     <h2>BMI Calculator</h2>
                     <div class="orange-divider"></div>
-                    <p>The BMI (Body Mass Index) Calculator helps users determine whether their weight is healthy based on their height and weight. </p>
-                    <p>It provides instant results and categorizes the BMI as underweight, normal, overweight, or obese. This tool promotes awareness of personal fitness and encourages healthier lifestyle choices.</p>
+                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
 
                     <div class="bmi-form">
                         <div class="form-row">
@@ -199,13 +205,18 @@
                                 <span class="unit">kg</span>
                             </div>
                         </div>
-                        <button class="btn btn-primary" onclick="calculateBMI()">Calculate BMI</button>
                     </div>
+                  
                 </div>
                 <div class="bmi-right">
-                    <div class="bmi-result" id="bmiResult"></div>
-                    <div class="bmi-chart">
-                        <img src="Resimler/bmi-index.jpg" alt="BMI Index Chart">
+                    <img src="Resimler/bmi-index.jpg" alt="BMI Index">
+                    <div class="simple-bmi-display">
+                        <div class="bmi-result-simple" id="bmiResultSimple">
+                            <div class="bmi-placeholder-simple">
+                                <i class="fas fa-calculator"></i>
+                                <span>Enter height & weight</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -218,7 +229,7 @@
             <div class="section-header">
                 <h2>OUR BEST TRAINERS</h2>
                 <div class="orange-divider"></div>
-                <p>Our best trainers are certified professionals with years of experience. They are dedicated to helping you reach your fitness goals safely and effectively.</p>
+                <p>Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
             </div>
             <div class="trainers-grid">
                 <div class="trainer-card">
@@ -260,18 +271,13 @@
             </div>
         </div>
     </section>
-
-    <div style="height: 100px;"></div>
-
     <!-- Purchase From Us Section -->
     <section class="purchase">
         <div class="container">
             <div class="section-header">
                 <h2>PURCHASE FROM US</h2>
                 <div class="orange-divider"></div>
-                <p>Shop with confidence and get high-quality products tailored to your fitness needs. We offer easy ordering, secure payment, and fast delivery to help you stay on track with your goals.</p>
-
-
+                <p>Lorem ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
             </div>
             <div class="purchase-grid">
                 <div class="purchase-card">
@@ -279,7 +285,9 @@
                     <div class="purchase-content">
                         <h3>Kettlebell / 5kg</h3>
                         <div class="purchase-price">
-                            <span class="current-price">89,99$ / 59,99$</span>
+                            <span class="current-price">
+                                <span style="text-decoration: line-through;">89,99$</span>
+                                / 59,99$</span>
                         </div>
                         <button class="purchase-btn" disabled>
                             <i class="fas fa-shopping-cart"></i>
@@ -292,7 +300,9 @@
                     <div class="purchase-content">
                         <h3>Treadmill</h3>
                         <div class="purchase-price">
-                            <span class="current-price">899,99$ / 599,99$</span>
+                            <span class="current-price">
+                                <span style="text-decoration: line-through;">899,99$ </span>
+                                / 599,99$</span>
                         </div>
                         <button class="purchase-btn" disabled>
                             <i class="fas fa-shopping-cart"></i>
@@ -305,7 +315,9 @@
                     <div class="purchase-content">
                         <h3>Adjustable Dumbbell</h3>
                         <div class="purchase-price">
-                            <span class="current-price">89,99$ / 59,99$</span>
+                            <span class="current-price">
+                                <span style="text-decoration: line-through;">89,99$ </span>
+                                 / 59,99$</span>
                         </div>
                         <button class="purchase-btn" disabled>
                             <i class="fas fa-shopping-cart"></i>
@@ -318,7 +330,9 @@
                     <div class="purchase-content">
                         <h3>Kettlebell / 3kg</h3>
                         <div class="purchase-price">
-                            <span class="current-price">89,99$ / 59,99$</span>
+                            <span class="current-price">
+                                <span style="text-decoration: line-through;">89,99$ </span>
+                                / 59,99$</span>
                         </div>
                         <button class="purchase-btn" disabled>
                             <i class="fas fa-shopping-cart"></i>
@@ -336,35 +350,43 @@
             <div class="section-header">
                 <h2>REVIEW CLIENT</h2>
                 <div class="orange-divider"></div>
-                <p>Our client reviews showcase honest feedback and experiences from people who have used our services. They help new customers trust us and understand the quality of our fitness programs.</p>
-
+                <p>Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
             </div>
             <div class="review-grid">
                 <div class="review-card">
-                    <div class="review-author">
-                        <img src="Resimler/client1.jpg" alt="Diet Expert">
-                        <div class="author-info">
-                            <h4>Diet Expert</h4>
-                            <span>CFO</span>
+                    <div class="custom-review-card">
+                      <div class="author-card">
+                        <div class="avatar" style="background-image: url('Resimler/client1.jpg');"></div>
+                        <div class="info">
+                          <div class="name">Diet Expert</div>
+                          <div class="title">CFO</div>
                         </div>
+                      </div>
+                      <br>
+                      <div class="speech-bubble">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, sequi quia,
+                        libero voluptatibus ducimus earum quidem minus eveniet, ex esse rem sed numquam.
+                        Error magnam in vero molestiae tempora nostrum.
+                      </div>
                     </div>
-                    <div class="review-content">
-                        <p>Great facility and knowledgeable trainers. The personalized workout plans helped me achieve my fitness goals faster than I expected.</p>
-
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-author">
-                        <img src="Resimler/client2.jpg" alt="Cardio Trainer">
-                        <div class="author-info">
-                            <h4>Cardio Trainer</h4>
-                            <span>CEO</span>
+                  </div>
+                  <div class="review-card">
+                    <div class="custom-review-card">
+                      <div class="author-card">
+                        <div class="avatar" style="background-image: url('Resimler/client2.jpg');"></div>
+                        <div class="info">
+                          <div class="name">Diet Expert</div>
+                          <div class="title">CFO</div>
                         </div>
+                      </div>
+                      <br>
+                      <div class="speech-bubble">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, sequi quia,
+                        libero voluptatibus ducimus earum quidem minus eveniet, ex esse rem sed numquam.
+                        Error magnam in vero molestiae tempora nostrum.
+                      </div>
                     </div>
-                    <div class="review-content">
-                        <p>I have seen amazing results since I started training here. The trainers are supportive and really motivate me to push my limits. Highly recommended!</p>
-                    </div>
-                </div>
+                  </div>
             </div>
         </div>
     </section>
@@ -375,8 +397,7 @@
             <div class="section-header">
                 <h2>CONTACT US</h2>
                 <div class="section-divider"></div>
-                <p>If you have any questions or need assistance, feel free to contact us. Our team is here to support you with all your fitness-related needs and inquiries.
-                <br>Hampden-Sydney College.</p>
+                <p>Lorem ipsum is not simply random text. It has roots in a piece of classical at<br>Hampden-Sydney College.</p>
             </div>
             <div class="contact-content">
                 <div class="contact-left">
