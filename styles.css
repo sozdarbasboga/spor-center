@@ -10,7 +10,7 @@ body {
     line-height: 1.6;
     color: #333;
     overflow-x: hidden;
-    padding-top: 100px;
+    padding-top: 55px;
 }
 
 .container {
@@ -32,7 +32,7 @@ body {
 }
 
 .navbar {
-    padding: 1rem 0;
+    padding: 0.3rem 0;
 }
 
 .nav-container {
@@ -54,8 +54,8 @@ body {
 }
 
 .nav-logo img {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
 }
 
